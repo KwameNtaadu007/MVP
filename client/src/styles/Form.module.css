@@ -1,0 +1,20 @@
+.formLabel{
+    @apply block text-sm font-medium;
+}
+.formElem{
+    @apply w-full border border-gray-300  rounded-3xl shadow-sm
+    focus:outline-none focus:border-slate-800 focus:ring-1 focus:ring-slate-800
+    bg-gray-200;
+}
+
+.textbox{
+    @apply w-3/4;
+}
+
+.btn-action{
+    @apply bg-[#FF6476] cursor-pointer;
+}
+
+.active{
+    @apply bg-ig-teal;
+}
