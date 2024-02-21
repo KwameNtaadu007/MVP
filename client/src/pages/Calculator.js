@@ -9,8 +9,7 @@ import {convertExchangeRates} from "../helper/currency";
 
 
 export default function Calculator() { 
-
-
+  //consume state from redux
   const dispatch = useDispatch();
   const forex = useSelector((state) => state.forex.data);
 
@@ -27,14 +26,14 @@ export default function Calculator() {
     }
   };
   
-
+    //Trigger data fetch when component first loads
     useEffect(() => {
       if (!forex){
            getForex()
         };      
     });
     
-
+    //render component
   return (
     <div className="min-h-[85vh]">
       <div className="py-6">
@@ -49,12 +48,12 @@ export default function Calculator() {
             </div>
           )}
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 items-center justify-center h-full ">
-        <div className="flex items-center justify-center">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 min-h-[60vh]">
+        <div className="flex justify-center">
           <MotorTypeAnime />
         </div>
-        <div className="flex items-center justify-center">
-          <div className=" rounded-md p-4 shadow-lg">
+        <div className="flex justify-center">
+          <div className=" rounded-md p-4 shadow-sm">
             <MotorForm />
           </div>
         </div>

@@ -12,6 +12,10 @@ body{
     scroll-behavior: smooth;
 }
 
+a:hover,a.active{
+    color:#FF6476;
+}
+
 
 @media screen and (max-width: 768px) {
     * {
@@ -20,6 +24,17 @@ body{
 }
 
 
-    /*#0c0f19;/*  #4b5320 */
-    /* #E2DFDD; */ 
-    /* #FF6476// bg-[#0B0F17]*/
+.mobile-menu {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    width: 50vw;
+}
+
+.mobile-menu a {
+    display: block;
+    margin-bottom: 10px;
+    text-decoration: none;
+}

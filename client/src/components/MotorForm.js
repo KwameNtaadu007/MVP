@@ -4,7 +4,10 @@ import Select from "./Select";
 import styles from "../styles/Form.module.css";
 
 export default function MotorForm() {
+  // Custom hook to calculate motor premium
   const calculator = useMotorPremium();
+
+   // State variables
   const [displayPremium, setDisplayPremium] = useState(0.0);
   const [coverOptions, setCoverOptions] = useState([
     { value: "", label: "Cover Type" },
@@ -31,13 +34,14 @@ export default function MotorForm() {
     currencySign: "GH¢",
   });
 
+  // Options for Policy Type select input
   const policyClasses = [
     { value: "", label: "Policy Type" },
     { value: "THIRD-PARTY", label: "THIRD-PARTY" },
     { value: "THIRD-PARTY FIRE & THEFT", label: "T-P FIRE & THEFT" },
     { value: "COMPREHENSIVE", label: "COMPREHENSIVE" },
   ];
-
+  // Options for Vehicle Usage select input
   const usageTypes = [
     { value: "", label: "Usage Type" },
     { value: "Private Individual", label: "Private Individual" },
@@ -62,14 +66,14 @@ export default function MotorForm() {
     { value: "GW1 Class2", label: "GW1 Class2" },
     { value: "GW1 Class3", label: "GW1 Class3" },
   ];
-
+  // Options for Currency Sign select input
   const currencySigns = [
     { value: "GH¢", label: "GH¢" },
     { value: "US$", label: "US$" },
     { value: "EUR€", label: "EUR€" },
     { value: "YEN¥", label: "YEN¥" },
   ];
-
+ // Function to determine Cover Types based on usage type
   const coverTypes = (usageType) => {
     const privateCover = [
       { value: "90% Cover", label: "90% Cover" },
@@ -92,9 +96,9 @@ export default function MotorForm() {
     }
     return setCoverOptions([{ value: "", label: "Cover Type" }]);
   };
-
+ // Function to map NCD options based on usage type
   const ncdMap = (option) => {
-    //console.log(option);
+
     const privateNCD = [
       { value: "0% (Inception)", label: "0% (Inception)" },
       { value: "25% (First Year)", label: "25% (First Year)" },
@@ -134,7 +138,7 @@ export default function MotorForm() {
     { value: "10% (10 Cars & Above)", label: "10% (10 Cars & Above)" },
     { value: "15% (15 Cars & Above)", label: "15% (15 Cars & Above)" },
   ];
-
+ // useEffect hook to handle currency conversion
   useEffect(() => {
     const { currencySign, exchangeRateValue, tppd } = formData;
     if (exchangeRateValue !== 1) {
@@ -150,12 +154,12 @@ export default function MotorForm() {
       });
     }
   }, [formData?.exchangeRateValue, formData]);
-
+  // useEffect hook to update cover types and NCD options based on usage type
   useEffect(() => {
     coverTypes(formData.usageType);
     ncdMap(formData.usageType);
   }, [formData.usageType]);
-
+ // useEffect hook to handle changes in policy class
   useEffect(() => {
     if (formData.policyClass === "THIRD-PARTY" || formData.policyClass === "") {
       setThirdParty(true);
@@ -172,16 +176,16 @@ export default function MotorForm() {
       setThirdParty(false);
     }
   }, [formData.policyClass]);
-
+ // Function to reset the form
   const handleReset = (e) => {
     setDisplayPremium(0.0);
     return;
   };
-
+ // Function to handle form input changes
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
+ // Function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (formData.policyClass !== "THIRD-PARTY" && formData.vehicleValue < 10) {
@@ -192,7 +196,7 @@ export default function MotorForm() {
     const premium = await calculator(formData);
     setDisplayPremium(premium);
   };
-
+ // Render the component
   return (
     <div className="p-6 rounded-2xl shadow-lg bg-slate-100 dark:bg-ig-blue">
       <div className="pb-2">

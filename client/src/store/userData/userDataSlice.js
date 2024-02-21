@@ -1,9 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-//'https://example.com/profile_picture.jpg',
-
-// const initialUserDataState;
-
+//intialize user data slice
 const userDataSlice = createSlice({
   name: 'userdata',
   initialState:null,

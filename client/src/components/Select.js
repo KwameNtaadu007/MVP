@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Select({ options, onChange, className, id, name, required }) {
+export default function Select({ options, onChange, className, id,value, name, required }) {
    // Use a unique key based on the length of the options array to force re-rendering
   const key = options.length;
 
@@ -10,6 +10,7 @@ export default function Select({ options, onChange, className, id, name, require
       onChange={onChange}
       className={className}
       id={id || null}
+      value={value}
       name={name}
       required={required}
     >

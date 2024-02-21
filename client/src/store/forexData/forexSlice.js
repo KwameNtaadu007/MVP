@@ -6,7 +6,7 @@ const forexSlice = createSlice({
   initialState: {data:null},
   reducers: {
     updateForex: (state, action) => {
-    //  console.log(action.payload,'payload')
+    //  undata state with new data
       state.data = action.payload.convertedValues; 
     },
   }, // additional actions here if needed

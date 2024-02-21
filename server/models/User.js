@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const { isEmail } = require("validator");
 const bcrypt = require("bcrypt");
 const validator = require("validator");
-
+//create user schema
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -15,7 +15,7 @@ const userSchema = new mongoose.Schema({
     required: true,
   },
   profilePicture: {
-    type: String, // You may store the image URL or use a dedicated storage service
+    type: String, //store the image URL or use a dedicated storage service
   },
   bio: {
     type: String,
@@ -84,7 +84,7 @@ userSchema.statics.signup = async function (signupData) {
     if (exists) {
       throw Error("Email already in use");
     }
-
+    //Hash user password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
